@@ -44,6 +44,7 @@ export class MainViewComponent implements OnInit, OnChanges {
 
 
   ngOnInit() {
+    this.commService.setShow(true);
     console.log('hey');
     // console.log(this.commService.getCurrentUser());
     // if (this.commService.getCurrentUser() === undefined) {

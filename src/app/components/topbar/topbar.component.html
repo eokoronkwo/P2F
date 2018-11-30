@@ -4,7 +4,7 @@
     <!-- <span>
       <button type="button" class="btn btn-success" [routerLink]="['/main-view']">Login</button>
     </span> -->
-    <span>
+    <span *ngIf="show; else elseBlock">
       <button type="button" class="btn btn-primary" [routerLink]="['/add-food']">Log Food</button>
       <button type="button" class="btn btn-primary" [routerLink]="['/add-exercise']">Log Exercise</button>
       <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>

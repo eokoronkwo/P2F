@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   // When user object comes in, checks if it is undefined (login error)
   // If login is sucessful, the userService will redirect user to proper page.
   ngOnInit() {
+    this.commService.setShow(false);
     this.userSubscription = this.commService
       .currentUserSubject.subscribe((user) => {
         if (user === null) {

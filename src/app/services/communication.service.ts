@@ -12,6 +12,8 @@ import { Exercise } from '../classes/exercise';
 })
 export class CommunicationService {
 
+  show = false;
+
   $listItems = new Subject<string>();
 
   username: string;
@@ -132,6 +134,18 @@ export class CommunicationService {
 
   getPassword() {
     return this.password;
+  }
+
+  getShow() {
+
+    return this.show;
+
+  }
+
+  setShow(show: boolean) {
+
+    this.show = show;
+
   }
 
 }
