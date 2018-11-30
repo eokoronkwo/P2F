@@ -1,0 +1,47 @@
+button{
+    background:rgba(0, 0, 0, 0.9);
+    color:#fff;
+    border:none;
+    font-size:17px;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  button:hover{
+    background:#fff;
+    color:rgb(26, 27, 27);
+  }
+  button:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: rgb(183, 190, 189);
+    transition:400ms ease all;
+  }
+  button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  button:hover:before,button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
+
+  .add-exercise {
+    margin-right: 10px;
+  }
+
+  .calories {
+    width: 85px;
+    margin-bottom: 20px;
+}
+
+.burn-them {
+    margin-bottom: 10px;
+}

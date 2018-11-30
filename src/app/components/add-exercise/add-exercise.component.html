@@ -28,16 +28,16 @@
       </mat-form-field>
     </div>
     <div>
-        <button (click)="calculateCalories(weight, met, duration)" mat-raised-button class="btn btn-danger">Burn Them</button>
+        <button (click)="calculateCalories(weight, met, duration)" mat-raised-button class="btn btn-danger burn-them">Burn Them</button>
     </div>
     <div class="form-group">
       <label for="weight">Calories Burned</label>
-      <input id="caloriesBurned" name="caloriesBurned" readonly [(ngModel)]="caloriesBurned" class="form-control" placeholder="{{caloriesBurned | number:'1.1-2'}}">
+      <input id="caloriesBurned" name="caloriesBurned" readonly [(ngModel)]="caloriesBurned" class="form-control calories" placeholder="{{caloriesBurned | number:'1.1-2'}}">
     </div>
     <p>{{caloriesBurned | number:'1.1-2' }}</p>
     <div class="btn-group mr-2" role="group">
-        <button type="button" (click)="addExerciseItem()" class="btn btn-primary">Add Exercise</button>
-        <button type="button" (click)="removeExerciseItem()" class="btn btn-primary">Remove Last Exercise</button>
+        <button type="button" (click)="addExerciseItem()" class="btn btn-primary add-exercise">Add Exercise</button>
+        <button type="button" (click)="removeExerciseItem()" class="btn btn-primary remove-exercise">Remove Last Exercise</button>
       </div>
       <ul class="list-group">
         <li *ngFor="let foodItem of foodArray; let i = index">
