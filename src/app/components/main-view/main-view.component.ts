@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, DoCheck } from '@angular/core';
 import { CalendarEvent } from 'calendar-utils';
 import { CalEvent } from 'src/app/classes/cal-event';
 import { Subscription } from 'rxjs';
@@ -31,7 +31,7 @@ const colors: any = {
   templateUrl: './main-view.component.html',
   styleUrls: ['./main-view.component.css']
 })
-export class MainViewComponent implements OnInit, OnChanges {
+export class MainViewComponent implements OnInit, OnChanges, DoCheck {
 
   loading = true;
   eventSubscription: Subscription;
@@ -59,13 +59,18 @@ export class MainViewComponent implements OnInit, OnChanges {
 
 
   ngOnInit() {
+    this.foodService.getFood(this.commService.getCurrentUser());
+    this.exerciseService.getExercises(this.commService.getCurrentUser());
+    // if (this.commService.getCurrentUser().id === null
+    //     || this.commService.getCurrentUser().id === undefined) {
+    //     this.router.navigate(['']);
+    //   }
+    this.commService.setShow(true);
     console.log('hey');
     // console.log(this.commService.getCurrentUser());
     // if (this.commService.getCurrentUser() === undefined) {
     //   this.router.navigate(['']);
     // } else {
-    this.foodService.getFood(this.commService.getCurrentUser());
-    this.exerciseService.getExercises(this.commService.getCurrentUser());
 
     this.foodArraySubscription = this.commService.currentFoodArraySubject
     .subscribe((foodArr) => {
@@ -82,12 +87,12 @@ export class MainViewComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (this.commService.getCurrentUser().get_id === null
-      || this.commService.getCurrentUser().get_id === undefined) {
-      this.router.navigate(['login']);
-    }
     this.foodService.getFood(this.commService.getCurrentUser());
     this.exerciseService.getExercises(this.commService.getCurrentUser());
+    if (this.commService.getCurrentUser().get_id === null
+      || this.commService.getCurrentUser().get_id === undefined) {
+      this.router.navigate(['']);
+    }
     this.foodArraySubscription = this.commService.currentFoodArraySubject
     .subscribe((foodArr) => {
       this.importedFoodEvents = foodArr;
@@ -99,6 +104,14 @@ export class MainViewComponent implements OnInit, OnChanges {
       console.log(this.importedExerciseEvents);
       this.createEventsArray();
     });
+  }
+
+  ngDoCheck() {
+    if (this.commService.getCurrentFoodArray() === undefined) {
+      this.foodService.getFood(this.commService.getCurrentUser());
+    } if (this.commService.getCurrentExerciseArray() === undefined) {
+    this.exerciseService.getExercises(this.commService.getCurrentUser());
+    }
   }
 
   createEventsArray() {

@@ -1,10 +1,10 @@
-<header class="navbar navbar-dark bg-primary" class="topbar">Health App
-  <div class="space"></div>
+
+<header class="topbar"><div [routerLink]="['/main-view']">rHealth Lite</div>
   <div class="align-right">
-    <span>
+    <!-- <span>
       <button type="button" class="btn btn-success" [routerLink]="['/main-view']">Login</button>
-    </span>
-    <span>
+    </span> -->
+    <span *ngIf="show; else elseBlock">
       <button type="button" class="btn btn-primary" [routerLink]="['/add-food']">Log Food</button>
       <button type="button" class="btn btn-primary" [routerLink]="['/add-exercise']">Log Exercise</button>
       <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>

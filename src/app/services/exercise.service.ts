@@ -19,8 +19,10 @@ export class ExerciseService {
   cHeaders = {headers: this.controlHeaders };
 
   logExercise(exerciseArr: Exercise[]) {
-    const url = 'http://localhost:8080/exercise';
-    this.httpClient.post(url, exerciseArr);
+    const url = 'http://localhost:8080/exercise/save';
+    this.httpClient.post<Exercise[]>(url, exerciseArr, this.cHeaders).subscribe( (saveExercises) => {
+      this.commService.setCurrentSavedExercise(saveExercises);
+    });
   }
 
   getExercises(user: User) {

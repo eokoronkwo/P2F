@@ -5,25 +5,25 @@
     </mat-form-field>
   </div>
   <div class="search-bar">
-    <label>Search Food </label>
-    <input [(ngModel)]="food" type="text" placeholder="Food Type" name="food" class="form-control form-control-sm"
+    <label class="search-bar">Search Food </label>
+    <input [(ngModel)]="food" type="text" placeholder="Food Type" name="food" class="form-control form-control-sm search-button"
       required />
     <button (click)="search()" class="btn">Search</button>
   </div>
   <div>
     <h3>One Serving :</h3>
     <p>{{servingQuantity}} {{servingUnit}}</p>
-    <label class="inputSearch">Serving Size </label>
-    <input [(ngModel)]="servingSize" type="text" placeholder="Serving Size" name="servingSize" class="form-control form-control-sm" />
-    <button (click)="calculateCalories()" class="btn">Calculate Calories</button>
+    <label class="inputSearch">Serving Size: </label>
+    <input [(ngModel)]="servingSize" type="text" placeholder="Serving Size" name="servingSize" class="form-control form-control-sm serving-size" />
+    <button (click)="calculateCalories()" class="btn calculate">Calculate Calories</button>
     <br>
-    <label>Calories </label>
+    <label>Calories: </label>
     <input (keyup)="calculateCalories()" [(ngModel)]="newCalories" type="text" placeholder="Calories" name="calories"
-      class="form-control form-control-sm" required readonly />
+      class="form-control form-control-sm calories" required readonly />
   </div>
   <div class="btn-group mr-2" role="group">
-    <button type="button" (click)="addFoodItem()" class="btn btn-primary">Add Food Item</button>
-    <button type="button" (click)="removeFoodItem()" class="btn btn-primary">Remove Last Food Item</button>
+    <button type="button" (click)="addFoodItem()" class="btn btn-primary add-food">Add Food Item</button>
+    <button type="button" (click)="removeFoodItem()" class="btn btn-primary remove-food">Remove Last Food Item</button>
   </div>
   <ul class="list-group">
     <li *ngFor="let foodItem of foodArray; let i = index">

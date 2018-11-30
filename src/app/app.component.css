@@ -1,0 +1,41 @@
+button{
+    display: block;
+    margin: auto;
+    background:rgb(79, 11, 156);
+    color:#fff;
+    border:none;
+    position:relative;
+    text-align: center;
+    margin-top: 5px;
+    height:30px;
+    width: 120px;
+    font-size:17px;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  button:hover{
+    background:#fff;
+    color:rgb(26, 27, 27);
+  }
+  button:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: rgb(183, 190, 189);
+    transition:400ms ease all;
+  }
+  button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  button:hover:before,button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }

@@ -233,7 +233,7 @@ export class AddExerciseComponent implements OnInit {
     const newExerciseItem = new Exercise (
       0,
       this.exercise[0],
-      this.date,
+      (this.date.substr(5, 4) + '-' + this.date.substring(0, 4)),
       this.caloriesBurned,
       this.commService.getCurrentUser().id
     );
@@ -255,6 +255,7 @@ export class AddExerciseComponent implements OnInit {
 
   onSubmit() {
     console.log(this.exerciseItemArray);
+    this.exerciseService.logExercise(this.exerciseItemArray);
   }
 
 }

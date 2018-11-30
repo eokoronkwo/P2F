@@ -6,12 +6,19 @@
   <div class="container-right">
     <div class="food">
       <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-        <div *cdkVirtualFor="let food of foodA" class="example-item">{{food.name}} {{food.calories}}</div>
+        <div (click)="trackByFn1()" id="{{food.id}}" *cdkVirtualFor="let food of foodArr; trackBy: trackByFn1" class="food-item">
+          <div>Name: {{food.name}}</div>
+          <div>Calories Consumed: {{food.calories}}</div>
+        </div>
       </cdk-virtual-scroll-viewport>
     </div>
     <div class="exercises">
       <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-        <div *cdkVirtualFor="let exercise of exerciseArr" class="example-item">{{exercise.name}} {{exercise.calories}}</div>
+        <div (click)="trackByFn2()" id="{{exercise.id}}" *cdkVirtualFor="let exercise of exerciseArr; trackBy: trackByFn2"
+          class="exercise-item">
+          <div>Name: {{exercise.name}}</div>
+          <div>Calories Burned: {{exercise.calories}}</div>
+        </div>
       </cdk-virtual-scroll-viewport>
     </div>
   </div>

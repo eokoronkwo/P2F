@@ -22,7 +22,13 @@ export class UserService {
       username: username,
       password: password
     };
-    this.httpClient.post<User>(url, payload).subscribe( (user) => {
+    const httpOptions = {
+      headers: new HttpHeaders ({
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json'
+      }),
+    };
+    this.httpClient.post<User>(url, payload, httpOptions).subscribe( (user) => {
       this.commService.setCurrentUser(user);
       console.log(user);
     }, () => {

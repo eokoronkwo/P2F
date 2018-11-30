@@ -2,7 +2,7 @@
     <div class="col-md-4">
       <div class="btn-group">
         <div *ngIf="view==='month'"
-          class="btn btn-primary"
+          class="btn btn-primary, previous"
           mwlCalendarPreviousView
           [view]="view"
           [(viewDate)]="viewDate"
@@ -10,14 +10,14 @@
           Previous
         </div>
         <div *ngIf="view==='month'"
-          class="btn btn-secondary"
+          class="btn btn-secondary today"
           mwlCalendarToday
           [(viewDate)]="viewDate"
           (viewDateChange)="viewDateChange.next(viewDate)">
           Today
         </div>
         <div *ngIf="view==='month'"
-          class="btn btn-primary"
+          class="btn btn-primary next"
           mwlCalendarNextView
           [view]="view"
           [(viewDate)]="viewDate"
@@ -32,7 +32,7 @@
     <div class="col-md-4">
       <div class="btn-group">
         <div
-          class="btn btn-primary"
+          class="btn btn-primary month-view"
           (click)="viewChange.emit('month')"
           [class.active]="view === 'month'">
           Month View

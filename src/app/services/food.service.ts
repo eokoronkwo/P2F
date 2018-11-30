@@ -38,8 +38,12 @@ export class FoodService {
   }
 
   logFood(foodArr: Food[]) {
-    const url = 'http://localhost:8080/food';
-    this.httpClient.post(url, foodArr);
+    const url = 'http://localhost:8080/food/save';
+    // let payload: Food[];
+    // payload = foodArr;
+    this.httpClient.post<Food[]>(url, foodArr, this.cHeaders).subscribe( (saveFoods) => {
+      this.commService.setCurrentSavedFood(saveFoods);
+    });
   }
 
   getFood(user: User) {

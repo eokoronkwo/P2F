@@ -33,7 +33,7 @@ export class CalendarDayViewComponent implements OnInit, OnChanges {
 
     @Input()
     data: Date;
-
+    items = Array.from({length: 100000}).map((_, i) => `Item #${i}`);
     chart: Chart;
     changeDetected: boolean;
     dateSubscription: Subscription;
@@ -101,19 +101,22 @@ export class CalendarDayViewComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         this.viewDate = this.commService.getCurrentDate();
-        // console.log(this.viewDate.toLocaleString());
         this.foodArr = this.commService.getCurrentFoodArray();
         this.exerciseArr = this.commService.getCurrentExerciseArray();
         console.log(this.foodArr);
         console.log(this.exerciseArr);
         console.log(this.viewDate.toLocaleDateString());
+        console.log( this.viewDate.toLocaleDateString().substring(0, this.viewDate.toLocaleDateString().indexOf('0'))
+        + this.viewDate.toLocaleDateString().substring(this.viewDate.toLocaleDateString().indexOf('0') + 1));
         this.convertChartData();
-        // console.log(this.viewDate.toDateString());
-        // console.log(this.viewDate.toISOString());
-        // console.log(this.viewDate.toJSON());
-        // console.log(this.viewDate.toTimeString());
-        // console.log(this.viewDate.toUTCString());
-        // console.log(this.viewDate.toString());
+        console.log(this.viewDate.toLocaleString());
+        // .slice(this.viewDate.toLocaleString().indexOf('0'), (this.viewDate.toLocaleString().indexOf('0') + 1)));
+        console.log(this.viewDate.toDateString());
+        console.log(this.viewDate.toISOString());
+        console.log(this.viewDate.toJSON());
+        console.log(this.viewDate.toTimeString());
+        console.log(this.viewDate.toUTCString());
+        console.log(this.viewDate.toString());
         // this.chartDataArraySubscription = this.commService.chartDataArraySubject
         //     .subscribe((chartDataArr) => {
         //         this.importedChartDataArray = chartDataArr;
@@ -198,6 +201,16 @@ export class CalendarDayViewComponent implements OnInit, OnChanges {
         this.dataSource.data = this.convertedChartDataArray;
         // console.log(this.convertedChartDataArray);
         // return convertedChartData;
+    }
+
+    trackByFn1(index, food: Food) {
+        console.log(food);
+        return index; // or song.id
+    }
+
+    trackByFn2(index, exercise: Exercise) {
+        console.log(exercise);
+        return index; // or song.id
     }
 }
 

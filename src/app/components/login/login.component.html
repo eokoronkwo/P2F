@@ -1,70 +1,157 @@
 <div class="accordion" id="accordionExample">
-<div class="collapse show" id="signIn" data-parent="#accordionExample">
-  <div class="container">
-    <form>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input name="username" [(ngModel)]="username" type="text" class="form-control" id="username" aria-describedby="userHelp"
-          placeholder="Enter Username">
-        <small id="userHelp" class="form-text text-muted">We'll never share your info with anyone else.</small>
+
+    <div class="collapse show" id="signIn" data-parent="#accordionExample">
+  
+      <div class="container">
+  
+        <div class="container">
+  
+          <form>
+  
+            <div class="form-group">
+  
+              <label for="username">Username</label>
+  
+              <input name="username" [(ngModel)]="username" type="text" class="form-control" id="username"
+  
+                aria-describedby="userHelp" placeholder="Enter Username">
+  
+              <small name="userHelp" id="userHelp" class="form-text text-dnager">{{ userHelp }}</small>
+  
+            </div>
+  
+            <div class="form-group">
+  
+              <label for="password">Password</label>
+  
+              <input name="password" [(ngModel)]="password" type="password" class="form-control" id="password"
+  
+                placeholder="Enter Password">
+  
+            </div>
+  
+            <div class="form-group">
+  
+              <button type="submit" class="btn btn-dark" (click)="submit()">Log In</button>
+  
+            </div>
+  
+            <div class="form-group">
+  
+              <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#signUp" aria-expanded="false"
+  
+                aria-controls="signUp">Sign Up</button>
+  
+            </div>
+  
+          </form>
+  
+        </div>
+  
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input name="password" [(ngModel)]="password" type="password" class="form-control" id="password" placeholder="Enter Password">
+  
+    </div>
+  
+    <div class="collapse" id="signUp" data-parent="#accordionExample">
+  
+      <div class="container">
+  
+        <form>
+  
+          <div class="container">
+  
+            <div class="form-group col-md-6">
+  
+              <label for="Username">Username</label>
+  
+              <input name="newUser" [(ngModel)]="newUser" type="text" class="form-control" id="newUser" placeholder="Username">
+  
+              <small name="newUserHelp" id="newUserHelp" class="form-text text-danger">{{ newUserHelp }}</small>
+  
+            </div>
+  
+            <div class="form-group col-md-6">
+  
+              <label for="Password">Password</label>
+  
+              <input name="newPassword" [(ngModel)]="newPassword" type="password" class="form-control" id="newPassword"
+  
+                placeholder="Password">
+  
+            </div>
+  
+          </div>
+  
+          <div class="container">
+  
+            <div class="form-group col-md-6">
+  
+              <label for="firstName">First Name</label>
+  
+              <input name="firstName" [(ngModel)]="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
+  
+            </div>
+  
+            <div class="form-group col-md-6">
+  
+              <label for="lastName">Last Name</label>
+  
+              <input name="lastName" [(ngModel)]="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name">
+  
+            </div>
+  
+          </div>
+  
+          <div class="container">
+  
+            <div class="form-group col-md-4">
+  
+              <label for="Birthday">Date of Birth</label>
+  
+              <input name="birthday" [(ngModel)]="birthday" type="text" class="form-control" id="Birthday" placeholder="Birthday">
+  
+            </div>
+  
+            <div class="form-group col-md-8">
+  
+              <label for="Email">Email</label>
+  
+              <input name="email" [(ngModel)]="email" type="text" class="form-control" id="Email" placeholder="Email">
+  
+            </div>
+  
+          </div>
+  
+          <div class="container">
+  
+            <div class="container">
+  
+              <div class="form-group">
+  
+                <div class="form-row">
+  
+                  <button type="submit" class="btn btn-dark" (click)="createAccount()">Create Account</button>
+  
+                </div>
+  
+              </div>
+  
+              <div class="form-group">
+  
+                <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#signIn" aria-expanded="true"
+  
+                  aria-controls="signIn">Sign In</button>
+  
+              </div>
+  
+            </div>
+  
+          </div>
+  
+        </form>
+  
       </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-dark" (click)="submit()">Log In</button>
-      </div>
-      <div class="form-group">
-        <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#signUp" aria-expanded="false"
-          aria-controls="signUp">Sign Up</button>
-      </div>
-    </form>
+  
+    </div>
+  
   </div>
-</div>
-<div class="collapse" id="signUp" data-parent="#accordionExample">
-  <div class="container">
-    <form>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="Username">Username</label>
-          <input name="newUser" [(ngModel)]="newUser" type="text" class="form-control" id="newUser" placeholder="Username">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="Password">Password</label>
-          <input name="newPassword" [(ngModel)]="newPassword" type="password" class="form-control" id="newPassword" placeholder="Password">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="firstName">First Name</label>
-          <input name="firstName" [(ngModel)]="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="lastName">Last Name</label>
-          <input name="lastName" [(ngModel)]="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="Birthday">Date of Birth</label>
-          <input name="birthday" [(ngModel)]="birthday" type="text" class="form-control" id="Birthday" placeholder="Birthday">
-        </div>
-        <div class="form-group col-md-8">
-          <label for="Email">Email</label>
-          <input name="email" [(ngModel)]="email" type="text" class="form-control" id="Email" placeholder="Email">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-row">
-          <button type="submit" class="btn btn-dark" (click)="createAccount()">Create Account</button>
-        </div>
-      </div>
-      <div class="form-group">
-          <button type="button" class="btn btn-dark" data-toggle="collapse" data-target="#signIn" aria-expanded="true"
-            aria-controls="signIn">Sign In</button>
-        </div>
-    </form>
-  </div>
-</div>
-</div>

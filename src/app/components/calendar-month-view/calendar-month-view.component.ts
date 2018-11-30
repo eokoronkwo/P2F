@@ -6,6 +6,10 @@ import { CalEvent } from 'src/app/classes/cal-event';
 import { CommunicationService } from 'src/app/services/communication.service';
 import { UserService } from 'src/app/services/user.service';
 import { Food } from 'src/app/classes/food';
+import { Router } from '@angular/router';
+import { FoodService } from 'src/app/services/food.service';
+import { ExerciseService } from 'src/app/services/exercise.service';
+import { Exercise } from 'src/app/classes/exercise';
 
 
 @Component({
@@ -15,17 +19,18 @@ import { Food } from 'src/app/classes/food';
 })
 export class CalendarMonthViewComponent implements OnInit, OnChanges {
 
+  loading = true;
   eventSubscription: Subscription;
   eventArraySubscription: Subscription;
-  // event = new CalEvent(
-  //   '',
-  //   new Date(),
-  //   0
-  // );
+  foodArraySubscription: Subscription;
+  exerciseArraySubscription: Subscription;
   importedFoodEvents: Food[];
+  importedExerciseEvents: Exercise[];
+  importedEvents: CalEvent[];
   convertedEventsArray: CalEvent[] = new Array(0);
   view: 'month';
   i: number;
+  j: number;
 
   viewDate: Date = new Date();
 
@@ -44,24 +49,86 @@ export class CalendarMonthViewComponent implements OnInit, OnChanges {
 
 
   constructor(private userService: UserService,
-    private commService: CommunicationService) { }
+    private commService: CommunicationService,
+    private router: Router,
+    private foodService: FoodService,
+    private exerciseService: ExerciseService) { }
 
 
-  ngOnInit() {
-    console.log('yes');
-    // this.eventArraySubscription = this.commService.eventArraySubject
-    //   .subscribe((events2) => {
-    //     this.importedFoodEvents = events2;
-    //     console.log(this.importedEvents);
-    //     this.convertEventsArray();
-    //   });
-    this.convertEventsArray();
+    ngOnInit() {
+      this.foodService.getFood(this.commService.getCurrentUser());
+      this.exerciseService.getExercises(this.commService.getCurrentUser());
+      this.commService.setShow(true);
+      console.log('hey');
+      // console.log(this.commService.getCurrentUser());
+      // if (this.commService.getCurrentUser() === undefined) {
+      //   this.router.navigate(['']);
+      // } else {
+
+      this.foodArraySubscription = this.commService.currentFoodArraySubject
+      .subscribe((foodArr) => {
+        this.importedFoodEvents = foodArr;
+        console.log(this.importedFoodEvents);
+      });
+      this.exerciseArraySubscription = this.commService.currentExerciseArraySubject
+      .subscribe((exerciseArr) => {
+        this.importedExerciseEvents = exerciseArr;
+        console.log(this.importedExerciseEvents);
+        this.createEventsArray();
+      });
+      // }
+    }
+
+    ngOnChanges() {
+      this.foodService.getFood(this.commService.getCurrentUser());
+      this.exerciseService.getExercises(this.commService.getCurrentUser());
+      if (this.commService.getCurrentUser().get_id === null
+        || this.commService.getCurrentUser().get_id === undefined) {
+        this.router.navigate(['']);
+      }
+      this.foodArraySubscription = this.commService.currentFoodArraySubject
+      .subscribe((foodArr) => {
+        this.importedFoodEvents = foodArr;
+        console.log(this.importedFoodEvents);
+      });
+      this.exerciseArraySubscription = this.commService.currentExerciseArraySubject
+      .subscribe((exerciseArr) => {
+        this.importedExerciseEvents = exerciseArr;
+        console.log(this.importedExerciseEvents);
+        this.createEventsArray();
+      });
+    }
+
+
+
+  createEventsArray() {
+    console.log(this.importedExerciseEvents);
+    console.log(this.importedFoodEvents);
+    for (this.j = 0; this.j < this.importedExerciseEvents.length; this.j++) {
+      const newEvent = new CalEvent(
+        '',
+        new Date(),
+        0,
+        '#e3bc08'
+      );
+      newEvent.title = this.importedExerciseEvents[this.j].name;
+      newEvent.start = new Date(this.importedExerciseEvents[this.j].date);
+      this.convertedEventsArray.push(newEvent);
+    }
+    for (this.i = 0; this.i < this.importedFoodEvents.length; this.i++) {
+      const newEvent = new CalEvent(
+        '',
+        new Date(),
+        0,
+        '#e3bc08'
+      );
+      newEvent.title = this.importedFoodEvents[this.i].name;
+      newEvent.start = new Date(this.importedFoodEvents[this.i].date);
+      this.convertedEventsArray.push(newEvent);
+    }
+    console.log(this.convertedEventsArray);
+    this.calendarEvents = this.convertedEventsArray;
   }
-
-  ngOnChanges() {
-    console.log('hey');
-  }
-
   convertEventsArray() {
     // this.eventSubscription = this.commService
     //   .eventSubject.subscribe((event) => {

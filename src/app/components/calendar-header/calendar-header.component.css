@@ -1,0 +1,49 @@
+.month-view {
+    background:rgba(120, 120, 121, 1);
+    color:#fff;
+    border:none;
+    font-size:17px;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+    width: 155px;
+  }
+  .month-view:hover{
+    background:#fff;
+    color:rgb(26, 27, 27);
+  }
+  .month-view:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:4px;
+    width:0;
+    background: rgb(183, 190, 189);
+    transition:400ms ease all;
+  }
+  .month-view:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .month-view:hover:before,button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
+
+.previous {
+    background:rgba(120, 120, 121, 1);
+    color: white;
+}
+
+.next {
+    background:rgba(120, 120, 121, 1);
+    color: white;
+}
+
+.row {
+  margin-top: 20px;
+}

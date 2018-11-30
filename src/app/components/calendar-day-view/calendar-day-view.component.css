@@ -7,15 +7,30 @@
     border: 3px solid green;
 }
 .food {
-    background: lightblue;
+    background: lightgray;
     height: 200px;
     width: 200px;
     border: 1px solid black;
 }
 
 .exercises {
-    background: lightcyan;
+    background: lightgray;
     height: 200px;
     width: 200px;
     border: 1px solid black;
 }
+.example-viewport {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+  }
+  
+  .food-item {
+    padding: 5;
+    border: 1px solid black;
+  }
+
+  .exercise-item {
+    padding: 5;
+    border: 1px solid black;
+  }

@@ -23,7 +23,7 @@ import { ViewUserInfoComponent } from './components/view-user-info/view-user-inf
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule, MatSelectModule } from '@angular/material';
+import { MatInputModule, MatSelectModule, MatDatepickerModule, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { FusionChartsModule } from 'angular-fusioncharts';
@@ -68,7 +68,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts);
     ViewUserInfoComponent,
     TopbarComponent,
     CalendarHeaderComponent,
-    MainViewComponent
+    MainViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,15 +92,18 @@ FusionChartsModule.fcRoot(FusionCharts, Charts);
     ButtonsModule,
     ChartsModule,
     ScrollDispatchModule,
-    JwtInterceptorModule
-
+    JwtInterceptorModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatFormFieldModule,
     MatInputModule,
   ],
   providers: [AuthService,
-  AuthGuard],
+  AuthGuard,
+  {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

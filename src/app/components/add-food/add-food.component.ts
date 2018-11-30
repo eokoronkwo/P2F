@@ -80,13 +80,20 @@ export class AddFoodComponent implements OnInit {
 
   addFoodItem() {
     this.invalidInput = false;
+    // if (this.date.length < 10) {
+
+    // }
     const newFoodItem = new Food (
       0,
       this.food,
-      this.date,
+      (this.date.substr(5, 5) + '-' + this.date.substring(0, 4)),
       this.newCalories,
       this.commService.getCurrentUser().id
     );
+    // if (this.date.includes('0')) {
+    //   this.date = this.date.substring(0, this.date.indexOf('0'))
+    //    + this.date.substring(this.date.indexOf('0') + 1);
+    // }
     // this.foodItem.date = this.date;
     // this.foodItem.name = this.food;
     // this.foodItem.calories = this.newCalories;
@@ -109,6 +116,7 @@ export class AddFoodComponent implements OnInit {
 
   submit() {
     console.log(this.foodArray);
+    this.foodService.logFood(this.foodArray);
   }
 
 }

@@ -12,6 +12,8 @@ import { Exercise } from '../classes/exercise';
 })
 export class CommunicationService {
 
+  show = false;
+
   $listItems = new Subject<string>();
 
   username: string;
@@ -44,10 +46,26 @@ export class CommunicationService {
   currentFoodArray: Food[];
   currentFoodArraySubject = new Subject<Food[]>();
 
+  savedFood: Food[];
+  savedFoodSubject = new Subject<Food[]>();
+
+  savedExercise: Exercise[];
+  savedExerciseSubject = new Subject<Food[]>();
+
   currentExerciseArray: Exercise[];
   currentExerciseArraySubject = new Subject<Exercise[]>();
 
   constructor() {}
+
+  setCurrentSavedExercise(savedFoods: Exercise[]) {
+    this.savedFoodSubject.next(<Exercise[]> savedFoods);
+    this.savedFood = savedFoods;
+  }
+
+  setCurrentSavedFood(savedFoods: Food[]) {
+    this.savedFoodSubject.next(<Food[]> savedFoods);
+    this.savedFood = savedFoods;
+  }
 
   setCurrentExerciseArray(exerciseArr: Exercise[]) {
     this.currentExerciseArraySubject.next(<Exercise[]> exerciseArr);
@@ -132,6 +150,18 @@ export class CommunicationService {
 
   getPassword() {
     return this.password;
+  }
+
+  getShow() {
+
+    return this.show;
+
+  }
+
+  setShow(show: boolean) {
+
+    this.show = show;
+
   }
 
 }
