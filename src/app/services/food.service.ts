@@ -15,6 +15,12 @@ export class FoodService {
   });
   options = {headers: this.headers };
 
+  controlHeaders = new HttpHeaders({
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json'
+  });
+  cHeaders = {headers: this.controlHeaders };
+
   constructor(private httpClient: HttpClient,
               private commService: CommunicationService) { }
 
@@ -38,12 +44,17 @@ export class FoodService {
 
   getFood(user: User) {
     const url = 'http://localhost:8080/food/calendar';
-    this.httpClient.post<Food[]>(url, user).subscribe( (foodArr) => {
+    this.httpClient.post<Food[]>(url, user, this.cHeaders).subscribe( (foodArr) => {
       this.commService.setCurrentFoodArray(foodArr);
       console.log(foodArr);
-    }, () => {
-      this.commService.setCurrentFoodArray(undefined);
     });
+    // return this.httpClient.post<Food[]>(url, user, this.cHeaders).subscribe
+    // .subscribe( (foodArr) => {
+    //   this.commService.setCurrentFoodArray(foodArr);
+    //   console.log(foodArr);
+    // }, () => {
+    //   this.commService.setCurrentFoodArray(undefined);
+    // });
   }
 
   deleteFood(food: Food) {

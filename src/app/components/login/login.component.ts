@@ -61,19 +61,19 @@ export class LoginComponent implements OnInit, OnDestroy {
   // }
 
   public submit() {
-    this.submitted = true;
-    this.loading = true;
-    this.auth.login(this.username, this.password)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate(['main-view']);
-          console.log(data);
-        },
-        error => {
-          this.error = error;
-          this.loading = false;
-        });
+    // this.submitted = true;
+    // this.loading = true;
+    // this.auth.login(this.username, this.password)
+    //   .pipe(first())
+    //   .subscribe(
+    //     data => {
+    //       this.router.navigate(['main-view']);
+    //       console.log(data);
+    //     },
+    //     error => {
+    //       this.error = error;
+    //       this.loading = false;
+    //     });
     this.userService.login(this.username, this.password);
   }
 

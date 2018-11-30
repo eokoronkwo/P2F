@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 // import { colors } from '../demo-utils/colors';
 import { CalendarEvent } from 'angular-calendar';
 import { Subscription } from 'rxjs';
 import { CalEvent } from 'src/app/classes/cal-event';
 import { CommunicationService } from 'src/app/services/communication.service';
 import { UserService } from 'src/app/services/user.service';
+import { Food } from 'src/app/classes/food';
 
 
 const colors: any = {
@@ -27,7 +28,7 @@ const colors: any = {
   templateUrl: './calendar-month-view.component.html',
   styleUrls: ['./calendar-month-view.component.css']
 })
-export class CalendarMonthViewComponent implements OnInit {
+export class CalendarMonthViewComponent implements OnInit, OnChanges {
 
   eventSubscription: Subscription;
   eventArraySubscription: Subscription;
@@ -36,7 +37,7 @@ export class CalendarMonthViewComponent implements OnInit {
     new Date(),
     0
   );
-  importedEvents: CalEvent[];
+  importedFoodEvents: Food[];
   convertedEventsArray: CalEvent[] = new Array(0);
   view: 'month';
   i: number;
@@ -62,26 +63,33 @@ export class CalendarMonthViewComponent implements OnInit {
 
 
   ngOnInit() {
-    this.eventArraySubscription = this.commService.eventArraySubject
-      .subscribe((events2) => {
-        this.importedEvents = events2;
-        console.log(this.importedEvents);
-        this.convertEventsArray();
-      });
+    console.log('yes');
+    // this.eventArraySubscription = this.commService.eventArraySubject
+    //   .subscribe((events2) => {
+    //     this.importedFoodEvents = events2;
+    //     console.log(this.importedEvents);
+    //     this.convertEventsArray();
+    //   });
+    this.convertEventsArray();
+  }
+
+  ngOnChanges() {
+    console.log('hey');
   }
 
   convertEventsArray() {
-    this.eventSubscription = this.commService
-      .eventSubject.subscribe((event) => {
-        this.event = event;
-      });
-      for (this.i = 0; this.i < this.importedEvents.length; this.i++) {
-        this.event.title = this.importedEvents[this.i].title;
-        this.event.start = new Date(this.importedEvents[this.i].start);
-        this.convertedEventsArray.push(this.event);
-        console.log(this.convertedEventsArray);
-        this.calendarEvents = this.convertedEventsArray;
-      }
+    // this.eventSubscription = this.commService
+    //   .eventSubject.subscribe((event) => {
+    //     this.event = event;
+    //   });
+    this.importedFoodEvents = this.commService.getCurrentFoodArray();
+    for (this.i = 0; this.i < this.importedFoodEvents.length; this.i++) {
+      this.event.title = this.importedFoodEvents[this.i].name;
+      this.event.start = new Date(this.importedFoodEvents[this.i].date);
+      this.convertedEventsArray.push(this.event);
+    }
+    console.log(this.convertedEventsArray);
+    this.calendarEvents = this.convertedEventsArray;
   }
 
 }
