@@ -7,7 +7,7 @@
     <span>
       <button type="button" class="btn btn-primary" [routerLink]="['/add-food']">Log Food</button>
       <button type="button" class="btn btn-primary" [routerLink]="['/add-exercise']">Log Exercise</button>
-      <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
+      <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
     </span>
   </div>
 </header>
