@@ -1,0 +1,25 @@
+header {
+    padding:10px;
+    margin-bottom: 10px;
+    background: #4DB6AC;
+    display: flex;
+}
+
+.toolbar-buttons {
+    display:flex;
+    justify-content: space-between;
+    width:30%;
+    min-width:8rem;
+    padding-right:1rem;
+}
+.space {
+   padding-right: 700px;
+}
+button {
+    margin: 0 2rem;
+}
+.icon {
+    position: relative;
+    padding-top: 7px;
+    padding-right: 6px;
+}

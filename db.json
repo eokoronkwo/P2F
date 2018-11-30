@@ -1,0 +1,13 @@
+{ 
+  "chartData": [
+  {
+  "label": "Calories Consumed",
+  "date": "Fri Nov 23 2018 00:00:00 GMT-0500 (Eastern Standard Time)",
+  "value": 900
+  },
+  {
+  "label": "Calories Burned",
+  "date": "Fri Nov 16 2018 00:00:00 GMT-0500 (Eastern Standard Time)",
+  "value": 1500
+  }]
+  }

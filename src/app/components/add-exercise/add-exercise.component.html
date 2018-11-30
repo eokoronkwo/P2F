@@ -1,0 +1,52 @@
+<div class="container">
+  <h1>Add Exercise</h1>
+
+  <form>
+    <div class="date-div">
+      <mat-form-field class="date-field">
+        <input type="date" matInput placeholder="Choose date" name="date" [(ngModel)]="date" required ngDefaultControl>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <ngx-select-dropdown [options]="exercises" [config]="config" [(value)]="exercise" aria-required="true"></ngx-select-dropdown>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <label for="weight">Current Weight (LBS to KG) </label>
+        <input matInput type="number" name="weight" class="weight" required [(ngModel)]="weight"
+          ngDefaultControl>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <label for="duration">Duration (Minutes)</label>
+        <input matInput type="number" name="duration" class="duration" id="duration" required [(ngModel)]="duration"
+          ngDefaultControl>
+      </mat-form-field>
+    </div>
+    <div>
+        <button (click)="calculateCalories(weight, met, duration)" mat-raised-button class="btn btn-danger">Burn Them</button>
+    </div>
+    <div class="form-group">
+      <label for="weight">Calories Burned</label>
+      <input id="caloriesBurned" name="caloriesBurned" readonly [(ngModel)]="caloriesBurned" class="form-control" placeholder="{{caloriesBurned | number:'1.1-2'}}">
+    </div>
+    <p>{{caloriesBurned | number:'1.1-2' }}</p>
+    <div class="btn-group mr-2" role="group">
+        <button type="button" (click)="addExerciseItem()" class="btn btn-primary">Add Exercise</button>
+        <button type="button" (click)="removeExerciseItem()" class="btn btn-primary">Remove Last Exercise</button>
+      </div>
+      <ul class="list-group">
+        <li *ngFor="let foodItem of foodArray; let i = index">
+          <div><input type="text" [(ngModel)]="foodItem.name" readonly></div>
+          <div><input type="text" [(ngModel)]="foodItem.calories" readonly></div>
+          <div><input type="text" [(ngModel)]="foodItem.date" readonly></div>
+        </li>
+      </ul>
+      <div *ngIf="invalidInput"><p>You're missing a field, please try again.</p></div>
+    <button (click)="onSubmit()" mat-raised-button type="submit" class="btn btn-success">Submit Exercises</button>
+  </form>
+</div>

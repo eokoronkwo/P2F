@@ -1,0 +1,26 @@
+<div class="form-row">
+  <h1>Medical Id Form</h1>
+  <div class="form-group col-md-6">
+    <label for="inputblood">Blood Type</label>
+    <input [(ngModel)]="inputblood" type="text" class="form-control" name="inputblood" placeholder="List Blood Type">
+  </div>
+  <div class="height">
+    <div class="form-group col-md-6">
+      <label for="inputheight">Height (Feet)</label>
+      <input [(ngModel)]="inputheightf" type="text" class="form-control" id="inputheight" placeholder="Height Ft">
+    </div>
+    <div class="form-group col-md-6" class="inches">
+      <label for="inputheight">Inches</label>
+      <input [(ngModel)]="inputheighti" type="text" class="form-control" id="inputheight">
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputdonor">Organ Donor (Check IF Yes)</label>
+    <input [(ngModel)]="inputdonor" type="checkbox" id="form-control" name="inputdonor" placeholder="Yes" value="true">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputweight">Weight</label>
+    <input [(ngModel)]="inputweight" type="text" class="form-control" id="inputweight" placeholder="Weight">
+  </div>
+  <button type="submit" (click)="submit()" class="btn btn-primary">Submit</button>
+</div>

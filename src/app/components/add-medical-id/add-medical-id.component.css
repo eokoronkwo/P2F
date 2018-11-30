@@ -1,0 +1,50 @@
+input[type=text] {
+    border: 2px solid ;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+    size: 20px;
+}
+input[type=text]:focus {
+    background-color: lightblue;
+    border: 3px solid #555;
+}
+#form-control{
+    padding: 10px;
+    margin: 10px;
+}
+.form-row{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 5px; 
+}
+h1{
+    text-align: center;
+}
+button{
+    width: 300px;
+    float: center;
+}
+button:active {
+    background-color: blue;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+button:hover {
+    background-color: rgb(45, 194, 253);
+}
+
+.form-row {
+    margin-top: 10px;
+}
+.inches {
+    width: 40px;
+}
+.height {
+    display: flex;
+}

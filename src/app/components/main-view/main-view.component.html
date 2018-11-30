@@ -1,0 +1,35 @@
+<app-calendar-header
+  [(view)]="view"
+  [(viewDate)]="viewDate">
+</app-calendar-header>
+<!-- <div class="alert alert-info">
+    Click on a day on the view.
+    <strong *ngIf="clickedDate">You clicked on this day: {{ clickedDate }}</strong>
+</div> -->
+
+<!-- <div class="alert alert-info">
+  <div [ngSwitch]="view">
+    <span *ngSwitchCase="'month'">Click on a month label to change the view to that month.</span>
+    <span *ngSwitchCase="'week'">Click on a day header to change the view to that day.</span>
+    <span *ngSwitchCase="'day'">There is no other view to navigate to.</span>
+  </div>
+</div> -->
+
+<div class="view" [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchDefault
+    [viewDate]="viewDate"
+    [events]="calendarEvents"
+    (dayClicked)="viewDate = $event.day.date; view = 'day'"
+    (dayClicked)="clickedDate = $event.day.date">
+  </mwl-calendar-month-view>
+  <!-- <mwl-calendar-week-view
+    *ngSwitchCase="'week'"
+    [viewDate]="viewDate"
+    [events]="events"
+    (dayHeaderClicked)="viewDate = $event.day.date; view = 'day'">
+  </mwl-calendar-week-view> -->
+  <app-calendar-day-view
+    *ngSwitchCase="'day'">
+  </app-calendar-day-view>
+</div>
