@@ -38,8 +38,8 @@ export class FoodService {
   }
 
   logFood(foodArr: Food[]) {
-    const url = 'http://localhost:8080/food/log';
-    this.httpClient.put(url, foodArr);
+    const url = 'http://localhost:8080/food';
+    this.httpClient.post(url, foodArr);
   }
 
   getFood(user: User) {
@@ -58,7 +58,7 @@ export class FoodService {
   }
 
   deleteFood(food: Food) {
-    const url = `http://localhost:8080/food/`;
+    const url = 'http://localhost:8080/food';
     this.httpClient.put<Food>(url, food);
   }
 }

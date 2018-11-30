@@ -8,21 +8,6 @@ import { UserService } from 'src/app/services/user.service';
 import { Food } from 'src/app/classes/food';
 
 
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3'
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF'
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
-  }
-};
-
 @Component({
   selector: 'app-calendar-month-view',
   templateUrl: './calendar-month-view.component.html',
@@ -32,11 +17,11 @@ export class CalendarMonthViewComponent implements OnInit, OnChanges {
 
   eventSubscription: Subscription;
   eventArraySubscription: Subscription;
-  event = new CalEvent(
-    '',
-    new Date(),
-    0
-  );
+  // event = new CalEvent(
+  //   '',
+  //   new Date(),
+  //   0
+  // );
   importedFoodEvents: Food[];
   convertedEventsArray: CalEvent[] = new Array(0);
   view: 'month';
@@ -83,13 +68,13 @@ export class CalendarMonthViewComponent implements OnInit, OnChanges {
     //     this.event = event;
     //   });
     this.importedFoodEvents = this.commService.getCurrentFoodArray();
-    for (this.i = 0; this.i < this.importedFoodEvents.length; this.i++) {
-      this.event.title = this.importedFoodEvents[this.i].name;
-      this.event.start = new Date(this.importedFoodEvents[this.i].date);
-      this.convertedEventsArray.push(this.event);
-    }
-    console.log(this.convertedEventsArray);
-    this.calendarEvents = this.convertedEventsArray;
+    // for (this.i = 0; this.i < this.importedFoodEvents.length; this.i++) {
+    //   this.event.title = this.importedFoodEvents[this.i].name;
+    //   this.event.start = new Date(this.importedFoodEvents[this.i].date);
+    //   this.convertedEventsArray.push(this.event);
+    // }
+    // console.log(this.convertedEventsArray);
+    // this.calendarEvents = this.convertedEventsArray;
   }
 
 }

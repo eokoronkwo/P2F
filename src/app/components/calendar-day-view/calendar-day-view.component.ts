@@ -13,6 +13,7 @@ import { CommunicationService } from 'src/app/services/communication.service';
 import { Subscription, Observable } from 'rxjs';
 import { Chart } from 'highcharts';
 import { Food } from 'src/app/classes/food';
+import { Exercise } from 'src/app/classes/exercise';
 
 interface Model {
     product: string;
@@ -28,7 +29,7 @@ interface Cals {
     styleUrls: ['./calendar-day-view.component.css'],
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class CalendarDayViewComponent implements OnInit, OnChanges, DoCheck {
+export class CalendarDayViewComponent implements OnInit, OnChanges {
 
     @Input()
     data: Date;
@@ -42,6 +43,9 @@ export class CalendarDayViewComponent implements OnInit, OnChanges, DoCheck {
         '',
         0,
     );
+    food: Food;
+    foodA = Array<Food>(
+    );
     // newConvertedChartData = new ConvertedChartData(
     //     '',
     //     0
@@ -49,8 +53,11 @@ export class CalendarDayViewComponent implements OnInit, OnChanges, DoCheck {
     importedChartDataArray: any[];
     convertedChartDataArray: ChartData[];
     i: number;
+    j: number;
     viewDate: Date;
     viewDateStringConversion: string;
+    foodArr: Food[];
+    exerciseArr: Exercise[];
 
     chartConfig = {
         width: '500',
@@ -89,58 +96,63 @@ export class CalendarDayViewComponent implements OnInit, OnChanges, DoCheck {
 
 
     public convertViewDate(date: Date) {
-        return this.viewDateStringConversion = date.toString();
+        return this.viewDateStringConversion = date.toLocaleDateString();
     }
 
     ngOnInit() {
         this.viewDate = this.commService.getCurrentDate();
         // console.log(this.viewDate.toLocaleString());
-        // console.log(this.viewDate.toLocaleDateString());
+        this.foodArr = this.commService.getCurrentFoodArray();
+        this.exerciseArr = this.commService.getCurrentExerciseArray();
+        console.log(this.foodArr);
+        console.log(this.exerciseArr);
+        console.log(this.viewDate.toLocaleDateString());
+        this.convertChartData();
         // console.log(this.viewDate.toDateString());
         // console.log(this.viewDate.toISOString());
         // console.log(this.viewDate.toJSON());
         // console.log(this.viewDate.toTimeString());
         // console.log(this.viewDate.toUTCString());
         // console.log(this.viewDate.toString());
-        this.chartDataArraySubscription = this.commService.chartDataArraySubject
-            .subscribe((chartDataArr) => {
-                this.importedChartDataArray = chartDataArr;
-                console.log(this.importedChartDataArray);
-                this.convertChartData();
-                this.dataSource.data = this.convertedChartDataArray;
-            });
-        this.convertViewDate(this.viewDate);
-        console.log(this.viewDateStringConversion);
+        // this.chartDataArraySubscription = this.commService.chartDataArraySubject
+        //     .subscribe((chartDataArr) => {
+        //         this.importedChartDataArray = chartDataArr;
+        //         console.log(this.importedChartDataArray);
+        //         this.convertChartData();
+        //         this.dataSource.data = this.convertedChartDataArray;
+        //     });
+        // this.convertViewDate(this.viewDate);
+        // console.log(this.viewDateStringConversion);
         // this.userService.getChartData();
     }
 
-    ngDoCheck() {
-        if (this.viewDate.toString() !== this.viewDateStringConversion) {
-            this.changeDetected = true;
-            this.convertViewDate(this.viewDate);
-        }
-        if ((this.dataSource.data = null)) {
-            this.convertChartData();
-        } else {
-            this.dataSource.data = null;
-        }
-    }
+    // ngDoCheck() {
+    //     if (this.viewDate.toString() !== this.viewDateStringConversion) {
+    //         this.changeDetected = true;
+    //         this.convertViewDate(this.viewDate);
+    //     }
+    //     if ((this.dataSource.data = null)) {
+    //         this.convertChartData();
+    //     } else {
+    //         this.dataSource.data = null;
+    //     }
+    // }
 
     ngOnChanges() {
         console.log('yes');
         this.dateSubscription =
-            this.commService.currentDateSubject.subscribe((date) => {
-                this.viewDate = date;
-                // console.log(this.viewDate);
-                this.convertViewDate(this.viewDate);
-                // console.log(this.viewDateStringConversion);
-            });
+        this.commService.currentDateSubject.subscribe((date) => {
+            this.viewDate = date;
+            // console.log(this.viewDate);
+            this.convertViewDate(this.viewDate);
+            // console.log(this.viewDateStringConversion);
+        });
         this.chartDataArraySubscription = this.commService.chartDataArraySubject
-            .subscribe((chartDataArr) => {
-                this.importedChartDataArray = chartDataArr;
-                // this.dataSource.data = this.convertedChartDataArray;
-                console.log(this.dataSource.data);
-            });
+        .subscribe((chartDataArr) => {
+            this.importedChartDataArray = chartDataArr;
+            // this.dataSource.data = this.convertedChartDataArray;
+            console.log(this.dataSource.data);
+        });
         // this.convertChartData();
 
         // console.log(this.convertedChartDataArray);
@@ -151,20 +163,41 @@ export class CalendarDayViewComponent implements OnInit, OnChanges, DoCheck {
     }
 
     convertChartData() {
+        console.log(this.foodArr);
+        console.log(this.exerciseArr);
         const convertedChartData: Cals[] = new Array(0);
-        for (this.i = 0; this.i < this.importedChartDataArray.length; this.i++) {
-            if (!(this.importedChartDataArray[this.i].date.toString() === this.viewDateStringConversion)) {
-                continue;
+        let caloriesConsumed = 0;
+        let caloriesBurned = 0;
+        const chartData = new ChartData(
+            'Calories Consumed',
+            0
+            );
+        for (this.i = 0; this.i < this.foodArr.length; this.i++) {
+            if ( (this.foodArr[this.i].date === this.viewDate.toLocaleDateString()) ) {
+                caloriesConsumed += this.foodArr[this.i].calories;
             }
-            this.newChartData.label = this.importedChartDataArray[this.i].label;
-            this.newChartData.value = this.importedChartDataArray[this.i].value;
-            convertedChartData.push(this.newChartData);
+            // console.log(this.foodArr[this.i].calories);
         }
+        chartData.value = caloriesConsumed;
+        console.log(caloriesConsumed);
+        convertedChartData.push(chartData);
+        console.log(convertedChartData);
+        const chartData2 = new ChartData(
+            'Calories Burned',
+            0
+        );
+        for (this.j = 0; this.j < this.exerciseArr.length; this.j++) {
+            if ( (this.exerciseArr[this.j].date === this.viewDate.toLocaleDateString())) {
+                caloriesBurned += this.exerciseArr[this.j].calories;
+            }
+        }
+        chartData2.value = caloriesBurned;
+        convertedChartData.push(chartData2);
         console.log(convertedChartData);
         this.convertedChartDataArray = convertedChartData;
         this.dataSource.data = this.convertedChartDataArray;
-        console.log(this.convertedChartDataArray);
-        return convertedChartData;
+        // console.log(this.convertedChartDataArray);
+        // return convertedChartData;
     }
 }
 

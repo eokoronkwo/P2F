@@ -32,7 +32,8 @@ export class AddExerciseComponent implements OnInit {
     0,
     '',
     '',
-    0
+    0,
+    this.commService.getCurrentUser().id
   );
   invalidInput = false;
   exerciseItemArray: Exercise[] = new Array(0);
@@ -234,6 +235,7 @@ export class AddExerciseComponent implements OnInit {
       this.exercise[0],
       this.date,
       this.caloriesBurned,
+      this.commService.getCurrentUser().id
     );
     if ( (this.exercise[0] === undefined)
     || (this.caloriesBurned === undefined)

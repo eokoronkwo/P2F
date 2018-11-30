@@ -6,12 +6,12 @@
   <div class="container-right">
     <div class="food">
       <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-        <div *cdkVirtualFor="let item of items" class="example-item">{{item}}</div>
+        <div *cdkVirtualFor="let food of foodA" class="example-item">{{food.name}} {{food.calories}}</div>
       </cdk-virtual-scroll-viewport>
     </div>
     <div class="exercises">
       <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-        <div *cdkVirtualFor="let item of items" class="example-item">{{item}}</div>
+        <div *cdkVirtualFor="let exercise of exerciseArr" class="example-item">{{exercise.name}} {{exercise.calories}}</div>
       </cdk-virtual-scroll-viewport>
     </div>
   </div>

@@ -3,8 +3,8 @@ export class Food {
         public id: number,
         public name: string,
         public date: string,
-        public calories: number
-        // public userId:
+        public calories: number,
+        public userId: number
     ) { }
 
     get_id() {

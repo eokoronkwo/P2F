@@ -31,6 +31,7 @@ export class AddFoodComponent implements OnInit {
     '',
     '',
     0,
+    this.commService.getCurrentUser().id
   );
   foodArray: Food[] = new Array(0);
   invalidInput = false;
@@ -84,6 +85,7 @@ export class AddFoodComponent implements OnInit {
       this.food,
       this.date,
       this.newCalories,
+      this.commService.getCurrentUser().id
     );
     // this.foodItem.date = this.date;
     // this.foodItem.name = this.food;
