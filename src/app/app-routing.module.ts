@@ -10,7 +10,7 @@ import { ExercisesComponent } from './components/exercises/exercises.component';
 const routes: Routes = [
   {
   component: LoginComponent,
-  path: '',
+  path: '', pathMatch: 'full'
 }, {
   component: MainViewComponent,
   path: 'main-view',

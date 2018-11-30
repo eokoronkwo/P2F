@@ -78,14 +78,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   createAccount() {
-    this.newUser = '';
-    this.newPassword = '';
-    this.firstName = '';
-    this.lastName = '';
-    this.birthday = '';
-    this.email = '';
-    this.newUserHelp = '';
-
     // catch( error =>
     //       { console.error('error caught');
     //       return Observable.( {description: "Error Value Emitted"} ); }).
